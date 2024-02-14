@@ -17,6 +17,7 @@ The [ollama-models-pull](docker-compose.yml#L30-L36) service will trigger an API
 {"status":"removing any unused layers"}
 {"status":"success"}
 ```
+> To verify the list of downloaded models, you can call Ollama on `http://localhost:11434/api/tags`.
 
 The models are stored in a [volume](docker-compose.yml#L7-L8) to avoid downloading them at each restart of Ollama.
 
