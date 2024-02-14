@@ -20,6 +20,8 @@ The [ollama-models-pull](docker-compose.yml#L30-L36) service will trigger an API
 
 The models are stored in a [volume](docker-compose.yml#L7-L8) to avoid downloading them at each restart of Ollama.
 
+Once the model downloaded, you can go to http://localhost. By default, the port number mapped to the host is `80`, but you can change it by editing the [`docker-compose.yml`](docker-compose.yml#L27) file). Next, sign up to create an account (everything is local) and log in. On the top of the page, look for the `Select a model` dropdown menu and select `mistral:latest`. After selecting it, click on the `Set as default` link to avoid having to select it again each time you create a new discussion.
+
 ## Requirements
 
 By default, Ollama is set to use 1 NVIDIA GPU:
