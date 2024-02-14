@@ -1,0 +1,39 @@
+version: "3"
+services:
+  ollama:
+    image: ollama/ollama:0.1.24
+    ports:
+      - 11434:11434
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ollama list || exit 1
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 10s
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+  ollama-webui:
+    image: ghcr.io/ollama-webui/ollama-webui:main
+    environment:
+      - OLLAMA_API_BASE_URL=http://ollama:11434/api
+    ports:
+      - 80:8080
+    volumes:
+      - ollama_webui_data:/app/backend/data
+  ollama-models-pull:
+    image: curlimages/curl:8.6.0
+    command: >-
+      http://ollama:11434/api/pull -d '{"name": "mistral"}'
+    depends_on:
+      ollama:
+        condition: service_healthy
+volumes:
+  ollama_data:
+  ollama_webui_data:
