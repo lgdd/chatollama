@@ -9,7 +9,7 @@ Simply run:
 ```shell
 docker compose up
 ```
-The [ollama-models-pull](docker-compose.yml#30) service will trigger an API call to Ollama to pull the mistral model (~4GB) and shutdown when it's done. You should see the progress in the logs of that service which should end with:
+The [ollama-models-pull](docker-compose.yml#L30) service will trigger an API call to Ollama to pull the mistral model (~4GB) and shutdown when it's done. You should see the progress in the logs of that service which should end with:
 
 ```
 {"status":"verifying sha256 digest"}
@@ -18,7 +18,7 @@ The [ollama-models-pull](docker-compose.yml#30) service will trigger an API call
 {"status":"success"}
 ```
 
-The models are stored in a [volume](docker-compose.yml#8) to avoid downloading them at each restart of Ollama.
+The models are stored in a [volume](docker-compose.yml#L8) to avoid downloading them at each restart of Ollama.
 
 ## Requirements
 
@@ -33,7 +33,7 @@ deploy:
           count: 1
           capabilities: [ gpu ]
 ```
-If you want to run on CPU, you can comment the lines showed above in the [`docker-compose.yml`](docker-compose.yml#15) file and then run `docker compose up`.
+If you want to run on CPU, you can comment the lines showed above in the [`docker-compose.yml`](docker-compose.yml#L15) file and then run `docker compose up`.
 
 If you want to run on an NVIDIA GPU, make sure that your Docker daemon configuration file contains the following:
 
