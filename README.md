@@ -55,4 +55,5 @@ Also, you should have installed the [NVIDIA CUDA Toolkit](https://developer.nvid
 ```shell
 docker run --runtime nvidia --rm nvidia/cuda:12.3.1-base-ubuntu20.04 nvidia-smi
 ```
+> [!NOTE]
 > Make sure that the version of the `nvidia/cuda` image is aligned with the CUDA version installed using the toolkit.
