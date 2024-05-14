@@ -1,6 +1,6 @@
 # ChatOllama
 
-A Docker Compose to run a local ChatGPT-like application using [Ollama](https://github.com/ollama/ollama), [Ollama Web UI](https://github.com/ollama-webui/ollama-webui) & [Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1).
+A Docker Compose to run a local ChatGPT-like application using [Ollama](https://github.com/ollama/ollama), [Open WebUI](https://github.com/open-webui/open-webui) & [Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1).
 
 ## Usage
 
