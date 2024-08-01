@@ -26,6 +26,8 @@ services:
       - 80:8080
     volumes:
       - open_webui_data:/app/backend/data
+    extra_hosts:
+      - host.docker.internal:host-gateway
   ollama-models-pull:
     image: curlimages/curl:8.6.0
     command: >-
