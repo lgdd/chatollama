@@ -2,6 +2,8 @@
 
 A Docker Compose to run a local ChatGPT-like application using [Ollama](https://github.com/ollama/ollama), [Open WebUI](https://github.com/open-webui/open-webui) & [Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1).
 
+> *Added [DeepSeek-R1-Distill-Llama-8B](https://ollama.com/library/deepseek-r1) to try out and compare.*
+
 ## Usage
 
 Simply run:
@@ -17,6 +19,8 @@ The [ollama-models-pull](docker-compose.yml#L30-L36) service will trigger an API
 {"status":"removing any unused layers"}
 {"status":"success"}
 ```
+> It will do the same for the distilled DeepSeek model.
+
 > To verify the list of downloaded models, you can call Ollama on `http://localhost:11434/api/tags`.
 
 The models are stored in a [volume](docker-compose.yml#L7-L8) to avoid downloading them at each restart of Ollama.

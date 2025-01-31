@@ -28,10 +28,17 @@ services:
       - open_webui_data:/app/backend/data
     extra_hosts:
       - host.docker.internal:host-gateway
-  ollama-models-pull:
+  ollama-pull--mistral:
     image: curlimages/curl:8.6.0
     command: >-
       http://ollama:11434/api/pull -d '{"name": "mistral"}'
+    depends_on:
+      ollama:
+        condition: service_healthy
+  ollama-pull--deepseek-r1-8b:
+    image: curlimages/curl:8.6.0
+    command: >-
+      http://ollama:11434/api/pull -d '{"name": "deepseek-r1:8b"}'
     depends_on:
       ollama:
         condition: service_healthy
