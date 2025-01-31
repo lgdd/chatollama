@@ -1,0 +1,28 @@
+name: Ollama Upgrade
+
+on:
+  workflow_dispatch:
+  push:
+  schedule:
+    - cron: '0 0 * * 1'
+
+jobs:
+  updater:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Get Latest Version
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl jq 
+          echo "OLLAMA_LATEST=$(curl -s 'https://hub.docker.com/v2/repositories/ollama/ollama/tags' | jq '.results[] | select(.name|test("[0-9].[0-9].[0-9]")) | .name' | head -n 1 | tr -d '"')" >> $GITHUB_ENV
+      - name: Upgrade
+        run: |
+          sed -i -E 's/ollama\/ollama:[0-9].[0-9].[0-9]/ollama\/ollama:'$OLLAMA_LATEST'/g' docker-compose.yml
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docker-compose.yml
+          git commit -am "chore: auto upgrade ollama" || echo "We're good for now. See you next time!"
+          git pull --rebase
+          git push
