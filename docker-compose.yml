@@ -31,7 +31,7 @@ services:
   ollama-pull--mistral:
     image: curlimages/curl:8.6.0
     command: >-
-      http://ollama:11434/api/pull -d '{"name": "mistral"}'
+      http://ollama:11434/api/pull -d '{"name": "mistral-nemo"}'
     depends_on:
       ollama:
         condition: service_healthy
