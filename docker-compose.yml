@@ -1,6 +1,6 @@
 services:
   ollama:
-    image: ollama/ollama:0.5.8-rc1rocm-rc1rocm
+    image: ollama/ollama:0.5.7
     ports:
       - 11434:11434
     volumes:
