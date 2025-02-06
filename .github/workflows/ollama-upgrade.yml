@@ -16,7 +16,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y curl jq 
-          echo "OLLAMA_LATEST=$(curl -s 'https://hub.docker.com/v2/repositories/ollama/ollama/tags' | jq '.results[] | select(.name|test("[0-9].[0-9].[0-9]")) | .name' | head -n 1 | tr -d '"')" >> $GITHUB_ENV
+          echo "OLLAMA_LATEST=$(curl -s 'https://hub.docker.com/v2/repositories/ollama/ollama/tags?page_size=50' | jq '.results[] | select(.name|match("^[0-9].[0-9].[0-9]$")) | .name' | head -n 1 | tr -d '"')" >> $GITHUB_ENV
       - name: Upgrade
         run: |
           sed -i -E 's/ollama\/ollama:[0-9].[0-9].[0-9]/ollama\/ollama:'$OLLAMA_LATEST'/g' docker-compose.yml
