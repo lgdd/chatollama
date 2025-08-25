@@ -1,6 +1,6 @@
 services:
   ollama:
-    image: ollama/ollama:0.9.6
+    image: ollama/ollama:
     ports:
       - 11434:11434
     volumes:
